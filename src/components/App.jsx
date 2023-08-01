@@ -7,7 +7,7 @@ import Note from "./Note";
 
 import Input from "./Input";
 
-
+const serverAddress = "https://mynotes-server-vvr2.onrender.com"
 
 function App(){ 
 
@@ -16,7 +16,7 @@ function App(){
 
     if(flag===0)
     {
-        axios.post("https://mynotes-server-mg5n.onrender.com/api",{})
+        axios.post(serverAddress + "/api",{})
         .then(async function(response){
             setNotes(response.data);
         })
@@ -28,7 +28,7 @@ function App(){
     
     
     async function addNote(note) {
-        await (axios.post("https://mynotes-server-mg5n.onrender.com/api",note)
+        await (axios.post(serverAddress +"/api",note)
         .then(async function(response){
             setNotes(response.data);
         })
@@ -41,7 +41,7 @@ function App(){
 
     async function deleteNote(id){
         console.log(id);
-        const dltURL = "https://mynotes-server-mg5n.onrender.com/api/"+id;
+        const dltURL = serverAddress +"/api/"+id;
 
         await axios.delete(dltURL,id)
         .then(async function(response){
@@ -53,7 +53,7 @@ function App(){
     }
 
     async function updateNote(id,edit){
-        await axios.patch("https://mynotes-server-mg5n.onrender.com/api/"+id,edit)
+        await axios.patch(serverAddress +"/api/"+id,edit)
         .then(async function(response){
             setNotes(response.data);
         })
